@@ -1,18 +1,29 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>{{ counter }}</h1>
+    <button @click="increment">Increment</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+
+  computed: {
+    counter() {
+      // return this.$store.state.counter;
+      return this.$store.getters.getCountText //for getters
+    }
+  },
+
+  methods: {
+    increment() {
+      // this.$store.commit('increment'); //for mutation
+      this.$store.dispatch('incrementAfterTwoSeconds'); //for action
+    }
   }
+
 }
 </script>
 
